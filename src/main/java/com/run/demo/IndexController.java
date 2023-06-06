@@ -21,6 +21,6 @@ public class IndexController {
     @RequestMapping("/bb")
     @ResponseBody
     public String index2() {
-        return "hello runner cc!";
+        return "hello runner bb!";
     }
 }
