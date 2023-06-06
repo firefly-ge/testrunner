@@ -5,12 +5,13 @@ cd /root/GitHub_Action
 # 可以先运行ps -ef|grep java|grep GitHub_Action-0.0.1-SNAPSHOT.jar看一下进程id是第几位到第几位
 # ps -ef|grep java|grep demo-0.0.1-SNAPSHOT.jar|cut -c9-14|xargs kill -9
 # ps -ef | grep java | grep -v grep | awk '{print $2}' | xargs kill -9
+pkill -9 java
 source /root/.bash_profile
 # 停5秒
 sleep 5s
 # 使环境变量生效ddd
 
 # 运行项目
-#pkill -9 java
+#
 
 nohup java -jar demo-0.0.1-SNAPSHOT.jar >/root/cicd.log 2>&1 &
