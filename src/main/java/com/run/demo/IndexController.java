@@ -12,7 +12,11 @@ public class IndexController {
     public String index() {
         return "hello runner!";
     }
-
+    @RequestMapping("/dd")
+    @ResponseBody
+    public String indexdd() {
+        return "hello runner dd!";
+    }
 
     @RequestMapping("/bb")
     @ResponseBody
