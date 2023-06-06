@@ -6,7 +6,7 @@ cd /root/GitHub_Action
 ps -ef|grep java|grepdemo-0.0.1-SNAPSHOT.jar|cut -c9-14|xargs kill -9
 # 停5秒
 sleep 5s
-# 使环境变量生效
+# 使环境变量生效ddd
 source /root/.bash_profile
 # 运行项目
 nohup java -jardemo-0.0.1-SNAPSHOT.jar >/root/cicd.log 2>&1 &
