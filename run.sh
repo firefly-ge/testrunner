@@ -8,7 +8,8 @@ cd /root/GitHub_Action
 # 停5秒
 # sleep 5s
 # 使环境变量生效ddd
-# source /root/.bash_profile
+
 # 运行项目
 pkill -9 java
+source /root/.bash_profile
 nohup java -jar demo-0.0.1-SNAPSHOT.jar >/root/cicd.log 2>&1 &
