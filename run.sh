@@ -2,7 +2,7 @@
 # 切换到jar包目录下
 cd /root/GitHub_Action 
 # 停5秒
-sleep 5s
+# sleep 5s
 # 使环境变量生效
 source /root/.bash_profile
 # 运行项目
