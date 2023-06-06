@@ -13,7 +13,8 @@ on:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
-
+  # 定义了这个结点表示可以手动触发，手动触发时还支持定义一些自定义参数
+  workflow_dispatch:
  
 jobs:
   develop_build:
