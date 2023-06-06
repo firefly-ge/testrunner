@@ -38,6 +38,19 @@ jobs:
  
       - name: 上传jar包和启动脚本到服务器中
         run: sshpass -p ${{secrets.CHAOYUEPASSWORD}} scp -r -o StrictHostKeyChecking=no ./target/demo-0.0.1-SNAPSHOT.jar ./run.sh root@${{secrets.CHAOYUEIP}}:/root/GitHub_Action
- 
-      - name: 启动项目
-        run: sshpass -p ${{secrets.CHAOYUEPASSWORD}} ssh -o StrictHostKeyChecking=no root@${{secrets.CHAOYUEIP}} "cd /root/GitHub_Action && chmod +x run.sh && ./run.sh"
+      
+      - name: 开始部署
+        uses: appleboy/ssh-action@master
+        with:
+          host: 47.100.176.107
+          username: root
+          password: 1qaz2WSX~!@#
+          port: 22
+          script: |
+            cd /root/GitHub_Action
+            source /root/.bash_profile
+            sleep 5s
+            pkill -9 java
+            nohup java -jar demo-0.0.1-SNAPSHOT.jar >/root/cicd.log 2>&1 &
+#      - name: 启动项目
+#        run: sshpass -p ${{secrets.CHAOYUEPASSWORD}} ssh -o StrictHostKeyChecking=no root@${{secrets.CHAOYUEIP}} "cd /root/GitHub_Action && chmod +x run.sh && ./run.sh"
