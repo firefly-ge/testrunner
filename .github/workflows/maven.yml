@@ -38,8 +38,23 @@ jobs:
  
       - name: 上传jar包和启动脚本到服务器中
         run: sshpass -p ${{secrets.CHAOYUEPASSWORD}} scp -r -o StrictHostKeyChecking=no ./target/demo-0.0.1-SNAPSHOT.jar ./run.sh root@${{secrets.CHAOYUEIP}}:/root/GitHub_Action
-       
-      - name: 配置项目
-        run: sshpass -p ${{secrets.CHAOYUEPASSWORD}} ssh -o StrictHostKeyChecking=no root@${{secrets.CHAOYUEIP}} "cd /root/GitHub_Action && chmod 777 run.sh  && nohup java -jar demo-0.0.1-SNAPSHOT.jar >/root/cicd.log 2>&1 & "
+      - name: Deploy
+        uses: appleboy/ssh-action@master
+        with:
+            host: 47.100.176.107
+            username: root
+            key: 1qaz2WSX~!@#
+            port: 22
+            command_timeout: 20s
+            script: | 
+              cd /root/GitHub_Action 
+              ps -ef | grep demo-0.0.1-SNAPSHOT.jar | grep -v grep | awk '{print $2}' | xargs kill -9 
+              nohup java -jar demo-0.0.1-SNAPSHOT.jar  --spring.profiles.active=formal > nohup.out &
+              pwd
+              exit
+                    
+                    
+   #   - name: 配置项目
+   #     run: sshpass -p ${{secrets.CHAOYUEPASSWORD}} ssh -o StrictHostKeyChecking=no root@${{secrets.CHAOYUEIP}} "cd /root/GitHub_Action && chmod 777 run.sh  && nohup java -jar demo-0.0.1-SNAPSHOT.jar >/root/cicd.log 2>&1 & "
   #    - name: 启动项目
    #     run: sshpass -p ${{secrets.CHAOYUEPASSWORD}} ssh -o StrictHostKeyChecking=no root@${{secrets.CHAOYUEIP}} "cd /root/GitHub_Action &&  nohup java -jar demo-0.0.1-SNAPSHOT.jar >/root/cicd.log 2>&1 & "
