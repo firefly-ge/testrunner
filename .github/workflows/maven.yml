@@ -40,6 +40,6 @@ jobs:
         run: sshpass -p ${{secrets.CHAOYUEPASSWORD}} scp -r -o StrictHostKeyChecking=no ./target/demo-0.0.1-SNAPSHOT.jar ./run.sh root@${{secrets.CHAOYUEIP}}:/root/GitHub_Action
        
       - name: 配置项目
-        run: sshpass -p ${{secrets.CHAOYUEPASSWORD}} ssh -o StrictHostKeyChecking=no root@${{secrets.CHAOYUEIP}} "cd /root/GitHub_Action && chmod 777 run.sh  && touch 122.txt  "
-      - name: 启动项目
-        run: sshpass -p ${{secrets.CHAOYUEPASSWORD}} ssh -o StrictHostKeyChecking=no root@${{secrets.CHAOYUEIP}} "cd /root/GitHub_Action &&  nohup java -jar demo-0.0.1-SNAPSHOT.jar >/root/cicd.log 2>&1 & "
+        run: sshpass -p ${{secrets.CHAOYUEPASSWORD}} ssh -o StrictHostKeyChecking=no root@${{secrets.CHAOYUEIP}} "cd /root/GitHub_Action && chmod 777 run.sh  && nohup java -jar demo-0.0.1-SNAPSHOT.jar >/root/cicd.log 2>&1 & "
+  #    - name: 启动项目
+   #     run: sshpass -p ${{secrets.CHAOYUEPASSWORD}} ssh -o StrictHostKeyChecking=no root@${{secrets.CHAOYUEIP}} "cd /root/GitHub_Action &&  nohup java -jar demo-0.0.1-SNAPSHOT.jar >/root/cicd.log 2>&1 & "
