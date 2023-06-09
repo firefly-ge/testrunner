@@ -47,7 +47,8 @@ jobs:
           password: ${{secrets.CHAOYUEPASSWORD}} # 服务器密码
           script: |
             cd /root/GitHub_Action 
-            touch 1111.txt
+            touch 222.txt
+            chmod 777 demo-0.0.1-SNAPSHOT.jar
             nohup java -jar demo-0.0.1-SNAPSHOT.jar >/root/cicd.log 2>&1 & 
             echo $jps
             
