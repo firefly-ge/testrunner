@@ -29,9 +29,6 @@ jobs:
       run: mvn -B package --file pom.xml
     - name: 测试脚本
       with:
-          command_timeout: 20s
-          script: | 
-            cd ~
-            touch 111.txt
+          command_timeout: 20s 
     
  
