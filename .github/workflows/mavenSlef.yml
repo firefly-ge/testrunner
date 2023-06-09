@@ -27,11 +27,5 @@ jobs:
         cache: maven
     - name: 开始干活
       run: mvn -B package --file pom.xml
-    # 第五步：部署到服务器
-    - name: 部署到服务器
-      with:
-          script: |
-            cd /tmp
-            touch 111.txt
     
  
