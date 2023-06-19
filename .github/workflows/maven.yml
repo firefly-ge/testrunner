@@ -39,7 +39,7 @@ jobs:
       - name: 上传jar包和启动脚本到服务器中
         run: sshpass -p ${{secrets.CHAOYUEPASSWORD}} scp -r -o StrictHostKeyChecking=no ./target/demo-0.0.1-SNAPSHOT.jar ./run.sh root@${{secrets.CHAOYUEIP}}:/root/GitHub_Action
       # 在服务器端执行相关指令
-      - name: 在服务器端执行相关指令
+      - name: 在服务器端执行相关指令22
         uses: appleboy/ssh-action@master
         with:
           host: ${{secrets.CHAOYUEIP}} # 服务器IP（需要在GitHub上自行配置对应的secret）
