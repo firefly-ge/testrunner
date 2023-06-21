@@ -1,0 +1,48 @@
+# 此工作流使用未经 GitHub 认证的操作。
+# 它们由第三方提供，并受
+# 单独的服务条款、隐私政策和支持
+# 文档。
+
+# GitHub 建议将操作固定到提交 SHA。
+# 若要获取较新版本，需要更新 SHA。
+# 还可以引用标记或分支，但该操作可能会更改而不发出警告。
+
+name: Create and publish a Docker image
+
+on: workflow_dispatch
+
+env:
+ REGISTRY: ghcr.io
+ IMAGE_NAME: imagename
+
+jobs:
+ build-and-push-image:
+   runs-on: ubuntu-latest
+   permissions:
+     contents: read
+     packages: write
+
+   steps:
+     - name: Checkout repository
+       uses: actions/checkout@v3
+
+     - name: Log in to the Container registry
+       uses: docker/login-action@65b78e6e13532edd9afa3aa52ac7964289d1a9c1
+       with:
+         registry: testrunner
+         username: 67929411@qq.com
+         password: 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
+
+     - name: Extract metadata (tags, labels) for Docker
+       id: meta
+       uses: docker/metadata-action@9ec57ed1fcdbf14dcef7dfbe97b2010124a938b7
+       with:
+         images: ${{ env.REGISTRY }}/imagename
+
+     - name: Build and push Docker image
+       uses: docker/build-push-action@f2a1d5e99d037542a71f64918e516c093c6f3fc4
+       with:
+         context: .
+         push: true
+         tags: 111
+         labels: 222
