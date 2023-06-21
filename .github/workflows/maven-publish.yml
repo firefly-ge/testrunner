@@ -33,7 +33,7 @@ jobs:
          username: 67929411@qq.com
          password: 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
 
-     - name: Extract metadata (tags, labels) for Docker
+     - name: Extract metadata (tags, labels) for Docker2
        id: meta
        uses: docker/metadata-action@9ec57ed1fcdbf14dcef7dfbe97b2010124a938b7
        with:
